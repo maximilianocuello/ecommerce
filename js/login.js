@@ -1,4 +1,3 @@
-
 const SUBMIT= document.getElementById('submit');
 const error = document.getElementById('incorrecto');
 
