@@ -1,6 +1,6 @@
 let productsArray = [];
 const catID = 101;
-const PRODUCTS_URL_CARS = `${PRODUCTS_URL}${catID}.json`;
+const PRODUCTS_URL_CARS = `${PRODUCTS_URL}${catID}${EXT_TYPE}`;
 
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL_CARS).then(function(resultObj){
