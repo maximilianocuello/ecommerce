@@ -8,6 +8,7 @@ SUBMIT.addEventListener('click', () => {
     let inputPassword = document.getElementById('inputPassword').value;
     
     if(inputEmail && inputPassword){
+        localStorage.setItem("usuario", inputEmail);
         window.location.href = "index.html";
     }
     else{
