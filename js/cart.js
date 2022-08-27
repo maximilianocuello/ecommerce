@@ -5,9 +5,12 @@ function showProductsArray(){
     document.getElementById("title").innerHTML = htmlContentTitle;
 
     let htmlContentToAppend = "";
+    debugger;
     for(let product of productsArray.products){
+        if (((min == undefined) || (min != undefined && product.cost >= min)) &&
+            ((max == undefined) || (max != undefined && product.cost <= max))){
+
         htmlContentToAppend += `
-        
         <div class="list-group-item list-group-item-action cursor-active">
             <div class="row">
                 <div class="col-3">
@@ -23,6 +26,8 @@ function showProductsArray(){
             </div>
         </div>
         `
+            }
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
-    }
+    
+}
 }
