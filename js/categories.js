@@ -7,6 +7,7 @@ let minCount = undefined;
 let maxCount = undefined;
 
 function sortCategories(criteria, array){
+   debugger;
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
     {
@@ -72,6 +73,7 @@ function showCategoriesList(){
 }
 
 function sortAndShowCategories(sortCriteria, categoriesArray){
+    debugger;
     currentSortCriteria = sortCriteria;
 
     if(categoriesArray != undefined){
