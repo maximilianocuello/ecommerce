@@ -35,7 +35,7 @@ document.getElementById("clearRangeFilter").addEventListener("click", () =>{
     showProductsArray();
 });
 
-
+/* Mostrando cada Carta de los products */
 function showProductsArray(){
     let htmlContentTitle = "";
     htmlContentTitle = `<h2>${productsArray.catName}</h2>
@@ -72,36 +72,84 @@ function showProductsArray(){
 
 
 }
- /*     Order in array from products */
 
- function sortAndShowProducts(arrayProducts){
+/*  LLAMADAS A LAS FUNCIONES DE FILTRO */
+document.getElementById('sortByCount').addEventListener('click', () =>{
+    sortAndShowProducts("ContadorCost");
+})
+document.getElementById('soldCountVent').addEventListener('click', () =>{
+    sortAndShowProducts("ContVent");
+})
+document.getElementById('sortAsc').addEventListener('click', () =>{
+    sortAndShowProducts("Ascender");
+})
+document.getElementById('sortDesc').addEventListener('click', () =>{
+    sortAndShowProducts("Descender");
+})
+
+/*     Order in array from products */
+
+
+function sortProducts(criterio,array){
     
-
-    arrayProducts = sortProducts(arrayProducts);
-
-    showProductsArray();
+    let products=[];
+    products = array.sort((a,b)=>{
+        
+        if(criterio === "ContadorCost"){
+            let aCount = parseInt(a.cost);
+            let bCount = parseInt(b.cost);
+            if(aCount > bCount){
+                return 1;
+            }
+            if(aCount < bCount){
+                return -1;
+            }
+            else return 0;
+        }
+        else if(criterio === "Ascender"){
+            if (a.name > b.name) {
+                return 1;
+            }
+            if (a.name < b.name) {
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        }
+        else if(criterio === "Descender"){
+            if (a.name < b.name) {
+                return 1;
+            }
+            if (a.name > b.name) {
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        }
+        else if(criterio === "ContVent"){
+            let aSoldCount = parseInt(a.soldCount);
+            let bSoldCount = parseInt(b.soldCount);
+            if(aSoldCount < bSoldCount){
+                return 1;
+            }
+            if(aSoldCount > bSoldCount){
+                return -1;
+            }
+            else return 0;
+        }
+    }
+    )
+    
+    
+    return products;
 }
 
-document.getElementById('sortByCount').addEventListener('click', () =>{
-    debugger;
-    sortAndShowProducts(arrayProducts);
-})
-function sortProducts(array){
-    debugger;
-let products=[];
+function sortAndShowProducts(criterio){
+   
 
-products = array.sort((a,b)=>{
-    
-    let aCount = parseInt(a.cost);
-    let bCount = parseInt(b.cost);
-    if(aCount > bCount){
-        return 1;
-    }
-    if(aCount < bCount){
-        return -1;
-    }
-    else return 0;
-})
+   arrayProducts = sortProducts(criterio, arrayProducts);
 
-return products;
+   showProductsArray();
 }
