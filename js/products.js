@@ -5,6 +5,9 @@ const PRODUCTS_URL_CARS = `${PRODUCTS_URL}${catID}${EXT_TYPE}`;
 let min;
 let max;
 
+
+usuario.innerHTML = localStorage.getItem("usuario");
+
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL_CARS).then(function(resultObj){
         if (resultObj.status === "ok"){
@@ -15,25 +18,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 })
 
-/*----------------------------Filtros-------------------------*/ 
-
-const FILTERBTN = document.getElementById('rangeFilterCount');
-FILTERBTN.addEventListener('click', ()=>{
-  min = document.getElementById('rangeFilterCountMin').value;
-  max = document.getElementById('rangeFilterCountMax').value;
-  showProductsArray();
-
-})
-/*------------------*-------Clean ------------------*/
-document.getElementById("clearRangeFilter").addEventListener("click", () =>{
-    document.getElementById("rangeFilterCountMin").value = "";
-    document.getElementById("rangeFilterCountMax").value = "";
-
-    min = undefined;
-    max = undefined;
-
-    showProductsArray();
-});
 
 /* Mostrando cada Carta de los products */
 function showProductsArray(){
@@ -41,7 +25,7 @@ function showProductsArray(){
     htmlContentTitle = `<h2>${productsArray.catName}</h2>
     <p class="lead">Aqui veras que clase vendemos.</p> `
     document.getElementById("title").innerHTML = htmlContentTitle;
-     
+    
     let htmlContentToAppend = "";
     
     for(let product of arrayProducts){
@@ -50,29 +34,48 @@ function showProductsArray(){
 
         htmlContentToAppend += `
         <div class="list-group-item list-group-item-action cursor-active">
-            <div class="row">
-                <div class="col-3">
-                    <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">${product.name} - ${product.currency} ${product.cost}</h4>
-                        <small class="text-muted">${product.soldCount} artículos vendidos</small>
-                    </div>
-                    <p class="mb-1">${product.description}</p>
-                </div>
-            </div>
+        <div class="row">
+        <div class="col-3">
+        <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
         </div>
-        `
+        <div class="col">
+        <div class="d-flex w-100 justify-content-between">
+        <h4 class="mb-1">${product.name} - ${product.currency} ${product.cost}</h4>
+                        <small class="text-muted">${product.soldCount} artículos vendidos</small>
+                        </div>
+                        <p class="mb-1">${product.description}</p>
+                        </div>
+                        </div>
+                        </div>
+                        `
+                    }
+                    
+                    document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+                    
+                }
+                
+                
             }
             
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
-    
-}
-
-
-}
-
+/*----------------------------Filtros-------------------------*/ 
+            
+const FILTERBTN = document.getElementById('rangeFilterCount');
+FILTERBTN.addEventListener('click', ()=>{
+min = document.getElementById('rangeFilterCountMin').value;
+max = document.getElementById('rangeFilterCountMax').value;
+showProductsArray();
+            
+})
+/*------------------*-------Clean ------------------*/
+document.getElementById("clearRangeFilter").addEventListener("click", () =>{
+document.getElementById("rangeFilterCountMin").value = "";
+document.getElementById("rangeFilterCountMax").value = "";
+            
+min = undefined;
+max = undefined;
+            
+showProductsArray();
+});
 /*  LLAMADAS A LAS FUNCIONES DE FILTRO */
 document.getElementById('sortByCount').addEventListener('click', () =>{
     sortAndShowProducts("ContadorCost");

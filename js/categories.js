@@ -6,6 +6,9 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+usuario.innerHTML = localStorage.getItem("usuario");
+
+
 function sortCategories(criteria, array){
    debugger;
     let result = [];
@@ -143,3 +146,5 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 });
+
+            
