@@ -40,19 +40,19 @@ function showProductsArray(){
             ((max == undefined) || (max != undefined && cost <= max))){
         htmlContentToAppend += `
         <div onclick="setProductID(${id})" class="list-group-item list-group-item-action cursor-active">
-        <div class="row">
-        <div class="col-3">
-        <img src="${image}" alt="${description}" class="img-thumbnail">
-        </div>
-        <div class="col">
-        <div class="d-flex w-100 justify-content-between">
-        <h4 class="mb-1">${name} - ${currency} ${cost}</h4>
+            <div class="row">
+                <div class="col-3">
+                    <img src="${image}" alt="${description}" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">${name} - ${currency} ${cost}</h4>
                         <small class="text-muted">${soldCount} artículos vendidos</small>
-                        </div>
+                    </div>
                         <p class="mb-1">${description}</p>
-                        </div>
-                        </div>
-                        </div>
+                    </div>
+                </div>
+            </div>
                         `
                     }
                     
