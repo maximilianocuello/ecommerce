@@ -1,5 +1,6 @@
 let productsArray = [];
 let arrayProducts =[];
+let searching = [];
 const catID =  localStorage.getItem("catID");
 const PRODUCTS_URL_CARS = `${PRODUCTS_URL}${catID}${EXT_TYPE}`;
 let min;
@@ -19,6 +20,11 @@ document.addEventListener("DOMContentLoaded", function(e){
 })
 
 
+function setProductID(id) {
+    localStorage.setItem("productID", id);
+    window.location = "product-info.html";
+}
+
 /* Mostrando cada Carta de los products */
 function showProductsArray(){
     let htmlContentTitle = "";
@@ -33,7 +39,7 @@ function showProductsArray(){
             ((max == undefined) || (max != undefined && product.cost <= max))){
 
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action cursor-active">
+        <div onclick="setProductID(${product.id})" class="list-group-item list-group-item-action cursor-active">
         <div class="row">
         <div class="col-3">
         <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
@@ -49,7 +55,7 @@ function showProductsArray(){
                         </div>
                         `
                     }
-                    
+                    console.log(product.id);
                     document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
                     
                 }
@@ -156,3 +162,22 @@ function sortAndShowProducts(criterio){
 
    showProductsArray();
 }
+
+
+/*         Funcion buscando en tiempo real */
+/*let search = document.getElementById('search');
+search.addEventListener('keyup' , (e) =>{
+    e.target.matches('#search')
+    if (e.target.value != "") {
+    
+       arrayProducts = arrayProducts.filter(elemento => {
+            return elemento.name.toUpperCase().includes(e.target.value.toUpperCase());
+       })
+       
+    }
+    else{
+        console.log('mostrar tuti')
+    }
+    console.log(arrayProducts)
+}) */
+
