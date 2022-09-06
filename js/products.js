@@ -35,27 +35,27 @@ function showProductsArray(){
     let htmlContentToAppend = "";
     
     for(let product of arrayProducts){
-        if (((min == undefined) || (min != undefined && product.cost >= min)) &&
-            ((max == undefined) || (max != undefined && product.cost <= max))){
-
+        let {id , image, description, name, currency, cost, soldCount} = product;
+        if (((min == undefined) || (min != undefined && cost >= min)) &&
+            ((max == undefined) || (max != undefined && cost <= max))){
         htmlContentToAppend += `
-        <div onclick="setProductID(${product.id})" class="list-group-item list-group-item-action cursor-active">
+        <div onclick="setProductID(${id})" class="list-group-item list-group-item-action cursor-active">
         <div class="row">
         <div class="col-3">
-        <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
+        <img src="${image}" alt="${description}" class="img-thumbnail">
         </div>
         <div class="col">
         <div class="d-flex w-100 justify-content-between">
-        <h4 class="mb-1">${product.name} - ${product.currency} ${product.cost}</h4>
-                        <small class="text-muted">${product.soldCount} artículos vendidos</small>
+        <h4 class="mb-1">${name} - ${currency} ${cost}</h4>
+                        <small class="text-muted">${soldCount} artículos vendidos</small>
                         </div>
-                        <p class="mb-1">${product.description}</p>
+                        <p class="mb-1">${description}</p>
                         </div>
                         </div>
                         </div>
                         `
                     }
-                    console.log(product.id);
+                    
                     document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
                     
                 }
