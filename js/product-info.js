@@ -1,7 +1,10 @@
 let urlFinal;
 let productInfoArray = [];
-let arrayComments = [];
+let arrayComments = []; 
+const FORM = document.getElementById('form')
+let arrayStars = FORM.getElementsByClassName('fa fa-star');
 const productID =  localStorage.getItem("productID");
+let score;
 
 function crearUrl(url) {
    urlFinal = `${url}${productID}${EXT_TYPE}`;
@@ -21,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         
           arrayComments = resultObj.data;
           showCommentsArray(arrayComments);
+          
       }
   });
     
@@ -86,16 +90,18 @@ document.getElementById('container').innerHTML += htmlContentToAppend;
 }
 
 function showCommentsArray(array) {
- 
+  
   let htmlContentToAppend = "";
   for (const ar of array) {
     htmlContentToAppend += `
         <div class="container-fluid  bg-light text-dark border-bottom border-dark">
-          <h6 >${ar.user} ${ar.score}<span class=" pl-5"> ${ar.dateTime}</span> </h6> 
+          <h6 >${ar.user} ${showStars(ar.score)} ${ar.dateTime}</span> </h6> 
           <p class="">${ar.description}</p>
         </div>
       `
+      
   }
+  
 document.getElementById('container-comment').innerHTML += htmlContentToAppend;
 
 }
@@ -104,12 +110,70 @@ document.getElementById('container-comment').innerHTML += htmlContentToAppend;
 // Funcion para imprimir score
 
 
-document.getElementById('btnStar').addEventListener('click', function showStars(){
-  let array = document.getElementsByClassName('fa fa-star');
-  
-    for (const estrella of array) {
-      
-      estrella.classList.add("checked");
+
+ function showStars(value){
+  let htmlContentToAppend = '';
+  for (let i = 0; i < 5; i++) {
+    if (i < value) {
+      htmlContentToAppend += `
+     <span class="fa fa-star checked"></span>
+  `
+               }
+    else{
+      htmlContentToAppend +=  `
+     <span class="fa fa-star"></span>
+  `
     }
-    return array;
+   
+  }
+  return htmlContentToAppend;
+}
+
+
+
+
+function addStar(stars){
+  debugger;
+  for (let i=0; i < arrayStars.length; i++) {
+    if (i < stars) {
+      
+      arrayStars[i].classList.add('checked');
+    }
+    else{
+      break;
+    }
+  }
+  return arrayStars;
+}
+arrayStars[0].addEventListener('click', function(){
+    addStar(1);
+    score = 1
+    return score 
+});
+arrayStars[1].addEventListener('click', function(){
+  addStar(2);
+  score = 2
+  return score
+});
+arrayStars[2].addEventListener('click', function(){
+  addStar(3);
+  score = 3
+  return score
+});
+arrayStars[3].addEventListener('click', function(){
+  addStar(4);
+  score = 4
+  return score
+});
+arrayStars[4].addEventListener('click', function(){
+  addStar(5);
+  score = 5
+  return score
+});
+
+
+
+document.getElementById('btnComment').addEventListener('click', function submit(){
+  
 })
+
