@@ -1,3 +1,4 @@
+
 let urlFinal;
 let productInfoArray = [];
 let arrayComments = []; 
@@ -102,7 +103,7 @@ function showCommentsArray(array) {
       
   }
   
-document.getElementById('container-comment').innerHTML += htmlContentToAppend;
+document.getElementById('container-comment').innerHTML = htmlContentToAppend;
 
 }
 
@@ -133,7 +134,7 @@ document.getElementById('container-comment').innerHTML += htmlContentToAppend;
 
 
 function addStar(stars){
-  debugger;
+  quiteStars();
   for (let i=0; i < arrayStars.length; i++) {
     if (i < stars) {
       
@@ -142,6 +143,18 @@ function addStar(stars){
     else{
       break;
     }
+  }
+  return arrayStars;
+}
+
+function quiteStars(){
+  
+  for (let i=0; i < arrayStars.length; i++) {
+    
+      
+      arrayStars[i].classList.remove('checked');
+    
+    
   }
   return arrayStars;
 }
@@ -174,6 +187,13 @@ arrayStars[4].addEventListener('click', function(){
 
 
 document.getElementById('btnComment').addEventListener('click', function submit(){
-  
+  let today = new Date();
+  let day = today.getDate();
+  let month = today.getMonth() + 1;
+  let year = today.getFullYear();
+  let hour = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+  let comment = document.getElementById('addComment').value;
+  arrayComments.push({"product": localStorage.getItem("productID"),"user":localStorage.getItem("usuario") ,"score":score, "description": comment , "dateTime": `${day}-${month}-${year} ${hour}`});
+  showCommentsArray(arrayComments);
+  document.getElementById('addComment').value = "";
 })
-
