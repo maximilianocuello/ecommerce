@@ -83,18 +83,16 @@ max = undefined;
 showProductsArray();
 });
 /*  LLAMADAS A LAS FUNCIONES DE FILTRO */
-document.getElementById('sortByCount').addEventListener('click', () =>{
-    sortAndShowProducts("ContadorCost");
+document.getElementById('sortByCountAsc').addEventListener('click', () =>{
+    sortAndShowProducts("CountCostAsc");
+})
+document.getElementById('sortByCountDesc').addEventListener('click', () =>{
+    sortAndShowProducts("CountCostDesc");
 })
 document.getElementById('soldCountVent').addEventListener('click', () =>{
     sortAndShowProducts("ContVent");
 })
-document.getElementById('sortAsc').addEventListener('click', () =>{
-    sortAndShowProducts("Ascender");
-})
-document.getElementById('sortDesc').addEventListener('click', () =>{
-    sortAndShowProducts("Descender");
-})
+
 
 /*     Order in array from products */
 
@@ -104,7 +102,7 @@ function sortProducts(criterio,array){
     let products=[];
     products = array.sort((a,b)=>{
         
-        if(criterio === "ContadorCost"){
+        if(criterio === "CountCostAsc"){
             let aCount = parseInt(a.cost);
             let bCount = parseInt(b.cost);
             if(aCount > bCount){
@@ -115,27 +113,16 @@ function sortProducts(criterio,array){
             }
             else return 0;
         }
-        else if(criterio === "Ascender"){
-            if (a.name > b.name) {
-                return 1;
-            }
-            if (a.name < b.name) {
+        else if(criterio === "CountCostDesc"){
+            let aCount = parseInt(a.cost);
+            let bCount = parseInt(b.cost);
+            if(aCount > bCount){
                 return -1;
             }
-            else{
-                return 0;
-            }
-        }
-        else if(criterio === "Descender"){
-            if (a.name < b.name) {
+            if(aCount < bCount){
                 return 1;
             }
-            if (a.name > b.name) {
-                return -1;
-            }
-            else{
-                return 0;
-            }
+            else return 0;
         }
         else if(criterio === "ContVent"){
             let aSoldCount = parseInt(a.soldCount);
