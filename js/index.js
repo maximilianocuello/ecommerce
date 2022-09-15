@@ -1,7 +1,9 @@
 let usuario = document.getElementById('usuario');
 
-
-document.addEventListener("DOMContentLoaded", function(){
+if(localStorage.getItem('usuario')){
+document.addEventListener("DOMContentLoaded", function (){
+    
+    
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
         window.location = "products.html"
@@ -18,4 +20,8 @@ document.addEventListener("DOMContentLoaded", function(){
     usuario.innerHTML = localStorage.getItem("usuario");
 
     
-});
+});}
+else
+{
+window.location = 'login.html';
+}
