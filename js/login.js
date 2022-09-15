@@ -29,7 +29,7 @@ const error = document.getElementById('incorrecto');
   
     // Parameters to pass to OAuth 2.0 endpoint.
     var params = {'client_id': '564727709025-cjavt28rtr3niicv75cje2107dgdk4ga.apps.googleusercontent.com',
-                  'redirect_uri': 'YOUR_REDIRECT_URI',
+                  'redirect_uri': 'https://maximilianocuello.github.io/ecommerce/login.html',
                   'response_type': 'token',
                   'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
                   'include_granted_scopes': 'true',
