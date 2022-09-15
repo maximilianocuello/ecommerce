@@ -19,7 +19,7 @@ const error = document.getElementById('incorrecto');
 
 
 var YOUR_CLIENT_ID = '564727709025-cjavt28rtr3niicv75cje2107dgdk4ga.apps.googleusercontent.com';
-  var YOUR_REDIRECT_URI = 'https://maximilianocuello.github.io/ecommerce/login.html'
+  var YOUR_REDIRECT_URI = 'https://maximilianocuello.github.io/ecommerce/index.html'
   ;
   var fragmentString = location.hash.substring(1);
 
