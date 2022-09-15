@@ -1,6 +1,6 @@
 let usuario = document.getElementById('usuario');
 
-if(localStorage.getItem('usuario')){
+
 document.addEventListener("DOMContentLoaded", function (){
     
     
@@ -20,8 +20,4 @@ document.addEventListener("DOMContentLoaded", function (){
     usuario.innerHTML = localStorage.getItem("usuario");
 
     
-});}
-else
-{
-window.location = 'login.html';
-}
+});
