@@ -1,5 +1,4 @@
 let usuario = document.getElementById('usuario');
-
 if(localStorage.getItem('usuario')){
 document.addEventListener("DOMContentLoaded", function (){
     
@@ -20,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function (){
     else{
         window.location = 'login.html';
     }
-    
-
-    ;
+document.getElementById('logOut').addEventListener('click', function logOut(){
+    localStorage.removeItem('usuario');
+    window.location = 'login.html';
+})
