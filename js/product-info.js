@@ -5,7 +5,12 @@ let arrayComments = [];
 const FORM = document.getElementById('form')
 let arrayStars = FORM.getElementsByClassName('fa fa-star');
 const productID =  localStorage.getItem("productID");
-let score;
+let score; 
+
+function setProductID(id) {
+  localStorage.setItem("productID", id);
+  window.location = "product-info.html";
+}
 
 function crearUrl(url) {
    urlFinal = `${url}${productID}${EXT_TYPE}`;
@@ -18,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function(e){
           
             productInfoArray = resultObj.data;
             showInfoArray(productInfoArray);
+            showProdRel(productInfoArray);
         }
     });
     getJSONData(crearUrl(PRODUCT_INFO_COMMENTS_URL)).then(function(resultObj){
@@ -28,8 +34,12 @@ document.addEventListener("DOMContentLoaded", function(e){
           
       }
   });
+
+  
     
 })
+
+/* ------------------ MUESTRA INFO -----------------------*/
 
 function showInfoArray({name, description, cost, currency, soldCount,category, images}) {
    
@@ -84,33 +94,51 @@ function showInfoArray({name, description, cost, currency, soldCount,category, i
           <span class="sr-only">Next</span>
         </a>
       </div>
-    </div>                
-  `
-document.getElementById('container').innerHTML += htmlContentToAppend;
-
-}
-
-function showCommentsArray(array) {
-  
-  let htmlContentToAppend = "";
-  for (const ar of array) {
-    htmlContentToAppend += `
-        <div class="container-fluid  bg-light text-dark border-bottom border-dark">
-          <h6 >${ar.user} ${showStars(ar.score)} ${ar.dateTime}</span> </h6> 
-          <p class="">${ar.description}</p>
-        </div>
+      </div>                
       `
+      document.getElementById('container').innerHTML += htmlContentToAppend;
       
-  }
-  
-document.getElementById('container-comment').innerHTML = htmlContentToAppend;
+    }
+    
+    /*------------------- MUESTRA COMENTARIOS ---------------*/
+    
+    function showCommentsArray(array) {
+      
+      let htmlContentToAppend = "";
+      for (const ar of array) {
+        htmlContentToAppend += `
+        <div class="container-fluid  bg-light text-dark border-bottom border-dark">
+        <h6 >${ar.user} ${showStars(ar.score)} ${ar.dateTime}</span> </h6> 
+        <p class="">${ar.description}</p>
+        </div>
+        `
+        
+      }
+      
+      document.getElementById('container-comment').innerHTML = htmlContentToAppend;
+      
+    }
+    
+      /* ---------------------- MUESTRA PRODUCTOS RELACIONADOS ------*/
+    function showProdRel({relatedProducts}){
+     let htmlContentToAppend = "";
+     for (const relProd of relatedProducts) {
+       
+       htmlContentToAppend += `
+       <div onclick = "setProductID(${relProd.id})" class="card m-2" style="width: 18rem;">
+        <img src="${relProd.image}" class="card-img-top" alt="...">
+        <div class="card-body">
+         <h5 class="card-title">Card title</h5>
+        </div>
+      </div>
+      `
+     }
 
-}
-
-
-// Funcion para imprimir score
-
-
+     document.getElementById("containerRelProd").innerHTML = htmlContentToAppend;
+    }
+    // Funcion para imprimir score
+    
+    
 
  function showStars(value){
   let htmlContentToAppend = '';
@@ -197,3 +225,4 @@ document.getElementById('btnComment').addEventListener('click', function submit(
   showCommentsArray(arrayComments);
   document.getElementById('addComment').value = "";
 })
+
