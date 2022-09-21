@@ -7,6 +7,8 @@ let arrayStars = FORM.getElementsByClassName('fa fa-star');
 const productID =  localStorage.getItem("productID");
 let score; 
 
+usuario.innerHTML = localStorage.getItem("usuario");
+
 function setProductID(id) {
   localStorage.setItem("productID", id);
   window.location = "product-info.html";

@@ -40,3 +40,7 @@ let getJSONData = function(url){
     });
 }
 
+function logOut(){
+  localStorage.removeItem('usuario');
+  window.location = 'login.html';
+}

@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-1">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,16 @@
           </li>
           <li class="nav-item">
             
-              <p id="usuario"></p>
+            <div class="dropdown">
+              <button class="btn btn-title dropdown-toggle" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false">
+                
+              </button>
+              <ul class="dropdown-menu" style="background-color: black;" aria-labelledby="usuario">
+                <li><a class="dropdown-item cursor-active" href="sell.html">Carrito</a></li>
+                <li><a class="dropdown-item cursor-active" href="my-profile.html">Perfil</a></li>
+                <li><a class="dropdown-item cursor-active" id="logOut" onclick="{logOut()}">Salir</a></li>
+              </ul>
+            </div>
             
           </li>
         </ul>
