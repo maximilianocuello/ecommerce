@@ -130,7 +130,8 @@ function showInfoArray({name, description, cost, currency, soldCount,category, i
        <div onclick = "setProductID(${relProd.id})" class="card m-2" style="width: 18rem;">
         <img src="${relProd.image}" class="card-img-top" alt="...">
         <div class="card-body">
-         <h5 class="card-title">Card title</h5>
+         <h5 class="card-title text-center" >${relProd.name}</h5>
+         
         </div>
       </div>
       `

@@ -1,5 +1,6 @@
 let productsArray = [];
 let arrayProducts =[];
+let arrayFilter = undefined;
 let searching = [];
 const catID =  localStorage.getItem("catID");
 const PRODUCTS_URL_CARS = `${PRODUCTS_URL}${catID}${EXT_TYPE}`;
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok"){
             productsArray = resultObj.data;
             arrayProducts = productsArray.products;
-            showProductsArray();
+            showProductsArray(arrayProducts);
         }
     });
 })
@@ -26,7 +27,7 @@ function setProductID(id) {
 }
 
 /* Mostrando cada Carta de los products */
-function showProductsArray(){
+function showProductsArray(arr){
     let htmlContentTitle = "";
     htmlContentTitle = `<h2>${productsArray.catName}</h2>
     <p class="lead">Aqui veras que clase vendemos.</p> `
@@ -34,7 +35,7 @@ function showProductsArray(){
     
     let htmlContentToAppend = "";
     
-    for(let product of arrayProducts){
+    for(let product of arr){
         let {id , image, description, name, currency, cost, soldCount} = product;
         if (((min == undefined) || (min != undefined && cost >= min)) &&
             ((max == undefined) || (max != undefined && cost <= max))){
@@ -69,7 +70,7 @@ const FILTERBTN = document.getElementById('rangeFilterCount');
 FILTERBTN.addEventListener('click', ()=>{
 min = document.getElementById('rangeFilterCountMin').value;
 max = document.getElementById('rangeFilterCountMax').value;
-showProductsArray();
+showProductsArray(arrayProducts);
             
 })
 /*------------------*-------Clean ------------------*/
@@ -152,19 +153,19 @@ function sortAndShowProducts(criterio){
 
 
 /*         Funcion buscando en tiempo real */
-/*let search = document.getElementById('search');
+let search = document.getElementById('search');
 search.addEventListener('keyup' , (e) =>{
     e.target.matches('#search')
     if (e.target.value != "") {
     
-       arrayProducts = arrayProducts.filter(elemento => {
+       arrayFilter = arrayProducts.filter(elemento => {
             return elemento.name.toUpperCase().includes(e.target.value.toUpperCase());
        })
        
     }
     else{
-        console.log('mostrar tuti')
+        arrayFilter = arrayProducts;
     }
-    console.log(arrayProducts)
-}) */
+    showProductsArray(arrayFilter)
+}) 
 
