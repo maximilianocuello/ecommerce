@@ -70,7 +70,7 @@ const FILTERBTN = document.getElementById('rangeFilterCount');
 FILTERBTN.addEventListener('click', ()=>{
 min = document.getElementById('rangeFilterCountMin').value;
 max = document.getElementById('rangeFilterCountMax').value;
-showProductsArray(arrayProducts);
+arrayFilter ? showProductsArray(arrayFilter) : showProductsArray(arrayProducts);
             
 })
 /*------------------*-------Clean ------------------*/
@@ -81,7 +81,7 @@ document.getElementById("rangeFilterCountMax").value = "";
 min = undefined;
 max = undefined;
             
-showProductsArray();
+showProductsArray(arrayProducts);
 });
 /*  LLAMADAS A LAS FUNCIONES DE FILTRO */
 document.getElementById('sortByCountAsc').addEventListener('click', () =>{
@@ -147,8 +147,13 @@ function sortAndShowProducts(criterio){
    
 
    arrayProducts = sortProducts(criterio, arrayProducts);
-
-   showProductsArray();
+if(arrayFilter){
+    arrayFilter = sortProducts(criterio, arrayFilter);
+   showProductsArray(arrayFilter);
+}
+else{
+    showProductsArray(arrayProducts);
+}
 }
 
 
