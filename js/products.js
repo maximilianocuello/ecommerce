@@ -164,7 +164,7 @@ search.addEventListener('keyup' , (e) =>{
     if (e.target.value != "") {
     
        arrayFilter = arrayProducts.filter(elemento => {
-            return elemento.name.toUpperCase().includes(e.target.value.toUpperCase());
+            return (elemento.name.toUpperCase().includes(e.target.value.toUpperCase()) || elemento.description.toUpperCase().includes(e.target.value.toUpperCase()));
        })
        
     }
