@@ -36,7 +36,7 @@ function showProductsArray(arr){
     let htmlContentToAppend = "";
     
     for(let product of arr){
-        let {id , image, description, name, currency, cost, soldCount} = product;
+        let {id , image, description, name, currency, cost, soldCount} = product;   
         if (((min == undefined) || (min != undefined && cost >= min)) &&
             ((max == undefined) || (max != undefined && cost <= max))){
         htmlContentToAppend += `
