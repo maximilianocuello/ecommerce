@@ -44,3 +44,7 @@ function logOut(){
   localStorage.removeItem('usuario');
   window.location = 'login.html';
 }
+function cartItems(){
+  window.location = 'cart.html';
+  localStorage.setItem('user', '25801');
+}
