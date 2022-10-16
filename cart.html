@@ -54,11 +54,47 @@
               <div class="card-header py-3">
                 <h5 class="mb-0">Cart - items</h5>
               </div>
-              <div id="siteItems"></div>
-              
+              <div id="siteItems">
+              </div>
             </div>
-            
-            <div class="card mb-4">
+            <hr>
+            <div class="d-block my-3">
+              <h2> Tipo de envio</h2>
+              <div class="custom-control custom-radio">
+              <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
+                required="">
+              <label class="custom-control-label" for="goldradio">Premium 2 a 5 dias</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="premiumradio">Express de 5 a 8 dias</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="standardradio">Estándar de 12 a 15 dias</label>
+            </div>
+          </div>
+          <hr>
+          <h2>
+            Direccion de envio
+          </h2>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="street">Calle</label>
+              <input type="text" class="form-control" id="street" value="" name="productStreet">
+          </div>
+          <div class="col-md-6 mb-3">
+              <label for="number">Numero</label>
+              <input type="text" class="form-control" id="number" value="" name="productNumber">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3" >
+          <label for="esq">Esquina</label>
+              <input type="text" class="form-control" id="esq" value="" name="productEsq">
+        </div>
+      </div>
+            <!-- <div class="card mb-4">
               <div class="card-body">
                 <p><strong>Expected shipping delivery</strong></p>
                 <p class="mb-0">12.10.2020 - 14.10.2020</p>
@@ -111,7 +147,8 @@
                   Go to checkout
                 </button>
               </div>
-            </div>
+            <p>Este</p>
+            </div>  -->
           </div>
         </div>
       </div>
