@@ -3,40 +3,9 @@ const fragment = document.createDocumentFragment()
 let nCantidad
 let idUser = localStorage.getItem('user');
 let userArr ={};
+let nPrecio
 
-// SUMA DE LA CANTIDAD DEL PRODUCTO
-
-function quantityPlus(){
-  userArr[0].count =  userArr[0].count +1
-   nCantidad = Object.values(userArr).reduce((acc, { count }) => acc + count, 0)
-  const nPrecio = Object.values(userArr).reduce((acc, {count, unitCost}) => acc + count * unitCost ,0)
-  
-  document.getElementById('form1').value= nCantidad
-  document.getElementById('price').textContent = `${userArr[0].currency} ${nPrecio}`
-
-    const clone = document.getElementById('siteItems').cloneNode(true)
-    fragment.appendChild(clone)
-
-    
-}
-
-// SUMA DE LA CANTIDAD DEL PRODUCTO
-
-function quantityMinus(){
-  if(nCantidad != 0){debugger
-  userArr[0].count =  userArr[0].count - 1
-   nCantidad = Object.values(userArr).reduce((acc, { count }) => acc + count, 0)
-  const nPrecio = Object.values(userArr).reduce((acc, {count, unitCost}) => acc + count * unitCost ,0)
-  
-  document.getElementById('form1').value= nCantidad
-  document.getElementById('price').textContent = `${userArr[0].currency} ${nPrecio}`
-
-    const clone = document.getElementById('siteItems').cloneNode(true)
-    fragment.appendChild(clone)
-  }
-    
-}
-
+// FETCH
 let cartUser = `${CART_INFO_URL}${idUser}${EXT_TYPE}`;
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(cartUser).then(function(resultObj){
@@ -48,6 +17,48 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 })
+
+// CLONAR CONTENIDO 
+function cloneHtml(){
+
+  document.getElementById('form1').value= nCantidad
+  document.getElementById('price').textContent = `${userArr[0].currency} ${nPrecio}`
+  
+  const clone = document.getElementById('siteItems').cloneNode(true)
+    fragment.appendChild(clone)
+}
+
+// SUMA DE LA CANTIDAD DEL PRODUCTO
+
+function quantityPlus(){
+  userArr[0].count =  userArr[0].count +1
+   nCantidad = Object.values(userArr).reduce((acc, { count }) => acc + count, 0)
+   nPrecio = Object.values(userArr).reduce((acc, {count, unitCost}) => acc + count * unitCost ,0)
+  
+  
+  cloneHtml()
+    
+
+    
+}
+
+// SUMA DE LA CANTIDAD DEL PRODUCTO
+
+function quantityMinus(){
+  if(nCantidad != 0){
+  userArr[0].count =  userArr[0].count - 1
+   nCantidad = Object.values(userArr).reduce((acc, { count }) => acc + count, 0)
+   nPrecio = Object.values(userArr).reduce((acc, {count, unitCost}) => acc + count * unitCost ,0)
+  
+  
+  cloneHtml()
+    
+  }
+    
+}
+
+
+
 
 function showItem(arr){
   let htmlContentToAppend = "";
@@ -91,7 +102,7 @@ for (let {name, image, unitCost, currency, count} of arr) {
       </button>
   
       <div class="form-outline">
-        <input id="form1" min="0" name="quantity" value="${count}" type="number" class="form-control" />
+        <input id="form1" min="0" name="quantity" value="${count}" type="number" class="form-control" oninput="quantityInputMod()"/>
       </div>
   
       <button class="btn btn-primary px-3 ms-2"
