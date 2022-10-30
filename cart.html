@@ -11,7 +11,9 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="">
+  
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -52,106 +54,221 @@
           <div class="col-md-8">
             <div class="card mb-4">
               <div class="card-header py-3">
-                <h5 class="mb-0">Cart - items</h5>
+                <h5 class="mb-1">Cart - items</h5>
               </div>
               <div id="siteItems">
               </div>
             </div>
-            <hr>
-            <div class="d-block my-3">
+          
+          <hr />
+            <div class="d-block my-3" id ="radioBtns">
               <h2> Tipo de envio</h2>
-              <div class="custom-control custom-radio">
-              <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
+              <div class="custom-control custom-radio" >
+                <input id="premiumRadio" name="publicationType" type="radio" class="custom-control-input" 
                 required="">
-              <label class="custom-control-label" for="goldradio">Premium 2 a 5 dias</label>
+                <label class="custom-control-label" for="goldradio">Premium 2 a 5 dias(12%)</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="expressRadio" name="publicationType" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="premiumradio">Express de 5 a 8 dias(7%)</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="standardRadio" name="publicationType" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="standardradio">Estándar de 12 a 15 dias(5%)</label>
+              </div>
             </div>
-            <div class="custom-control custom-radio">
-                <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
-                <label class="custom-control-label" for="premiumradio">Express de 5 a 8 dias</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
-                <label class="custom-control-label" for="standardradio">Estándar de 12 a 15 dias</label>
-            </div>
-          </div>
-          <hr>
+
+        
           <h2>
             Direccion de envio
           </h2>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="street">Calle</label>
-              <input type="text" class="form-control" id="street" value="" name="productStreet">
-          </div>
-          <div class="col-md-6 mb-3">
-              <label for="number">Numero</label>
-              <input type="text" class="form-control" id="number" value="" name="productNumber">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mb-3" >
-          <label for="esq">Esquina</label>
-              <input type="text" class="form-control" id="esq" value="" name="productEsq">
-        </div>
-      </div>
-            <!-- <div class="card mb-4">
-              <div class="card-body">
-                <p><strong>Expected shipping delivery</strong></p>
-                <p class="mb-0">12.10.2020 - 14.10.2020</p>
-              </div>
-            </div>
-            <div class="card mb-4 mb-lg-0">
-              <div class="card-body">
-                <p><strong>We accept</strong></p>
-                <img class="me-2" width="45px"
-                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-                  alt="Visa" />
-                <img class="me-2" width="45px"
-                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-                  alt="American Express" />
-                <img class="me-2" width="45px"
-                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-                  alt="Mastercard" />
-                
+          <form action="#" method="get" class="row mt-4" id="form">
+          <div class="form-group">
+            <label for="exampleInputStreet" class="form-label mt-4">Calle</label>
+            <input type="adress" class="form-control" id="street" aria-describedby="streetHelp" placeholder="Escriba aqui su calle">
+            <div class="invalid-feedback">
+              Por favor, escriba su calle.
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <div class="card-header py-3">
-                <h5 class="mb-0">Summary</h5>
+          <div class="form-group">
+            <label for="exampleInputHouseNumber" class="form-label mt-4">Numero</label>
+            <input type="adress" class="form-control" id="number" aria-describedby="numberHelp" placeholder="Numero de casa">
+            <div class="invalid-feedback">
+              Por favor, escriba el numero de puerta.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputCorner" class="form-label mt-4">Esquina</label>
+            <input type="adress" class="form-control" id="corner" aria-describedby="cornerHelp" placeholder="Escriba aqui su esquina">
+            <div class="invalid-feedback">
+              Por favor, escriba la esquina.
+            </div>
+          </div>
+          
+      
+        <h2 class="mt-1">
+        Costos
+        </h2>
+          <div class="list-group" id="costos">
+            <div class="list-group-item list-group-item-action ">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="row">
+                    <p class="fs2">Subtotal</p>
+                  </div>
+                  <div class="row">
+                    <p class="text-muted">Costo unitario por producto</p>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <h3 id="subTotal"></h3>
+                </div>   
               </div>
-              <div class="card-body">
-                
-                  <li
-                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                    Products
-                    <span>$53.98</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                    Shipping
-                    <span>Gratis</span>
-                  </li>
-                  <li
-                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                    <div>
-                      <strong>Total amount</strong>
-                      <strong>
-                        <p class="mb-0">(including VAT)</p>
-                      </strong>
+            </div>
+            <hr />
+            <div class="list-group-item list-group-item-action ">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="row">
+                    <p class="fs2">Costo de envio</p>
+                  </div>
+                  <div class="row">
+                  <p class="text-muted">Segun el tipo de envio</p>
+                </div>
+              </div>
+                <div class="col-sm-4">
+                  <h3 id="costo">
+
+                  </h3>
+                     
+                </div>
+              </div>
+            </div>
+          <hr>
+            <div class="list-group-item list-group-item-action ">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="row">
+                    <p class="fs2">Total ($)</p>
+                   </div>
+                  </div>
+                      <div class="col-sm-4">
+                        <h3 id="total">
+                        
+                        </h3>    
+                     </div>
                     </div>
-                    <span><strong>$53.98</strong></span>
-                  </li>
-                
-    
-                <button type="button" class="btn btn-primary btn-lg btn-block">
-                  Go to checkout
-                </button>
-              </div>
-            <p>Este</p>
-            </div>  -->
+                  </div>
+          </div>
+          <div class="mt-2">
+            <h2>
+              Formas de pago
+            </h2>
+          </div>
+            <div class="form-check">
+              <label for="modalCredit"> No ha seleccionado</label>
+              <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal" data-bs-target="#modalTerminos"
+                id="btnTerminos" required>seleccionar</button>  
+                <div class="invalid-feedback">
+                  Seleccione el metodo de pago
+                </div>               
+            </div>              
+            <div class="d-grid mt-1">
+              <button class="btn btn-lg btn-primary" type="submit" id="submit">Finalizar compra</button>
+              
+            </div>
+          
+       
+      
+          </form>
           </div>
         </div>
+<div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Forma de pago</h1>
+        <hr />
+        
       </div>
+      <div class="modal-body">
+        <div>
+            <input type="radio" name="payment" id="credit">
+            <label for="">Tarjeta de Credito</label>
+            <hr />
+          <div class="row">
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="tarjet-number" id="tarjetNumber">
+              <div class="invalid-feedback">
+                Por favor, escriba el numero de su tarjeta de credito.
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <input type="number" class="form-control" name="security-code" id="securityCode">
+              <div class="invalid-feedback">
+                Por favor, escriba el codigo de seguridad de su tarjeta.
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-sm-6" >
+              <input type="number" class="form-control" name="expiration-date" id="expirationDate">
+              <div class="invalid-feedback">
+                Por favor, escriba la fecha de vencimiento.
+              </div>
+            </div>
+          </div>
+           <div class="card mb-3 mt-2 mb-lg-0">
+            <div class="card-body">
+              <p><strong>Aceptamos</strong></p>
+              <img class="me-2" width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                alt="Visa" />
+              <img class="me-2" width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                alt="American Express" />
+              <img class="me-2" width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                alt="Mastercard" />
+              
+          </div>
+          </div> 
+          <div class="mt-3">
+
+            <input type="radio" name="payment" id="transfer">
+            <label for="">Tranferencia bancaria</label>
+            
+          </div>
+
+
+
+          <hr />
+          <label for="">Numero de cuenta</label>
+          <div class="col-sm-6">
+          <input type="number" class="form-control" name="account" id="account">
+          <div class="invalid-feedback">
+            Por favor, escriba su numero de cuenta.
+          </div>
+        </div>
+        </div>
+      </div>
+    <div>
+    </div>
+    <hr />
+    <button type="button" class="btn btn-lg btn-primary" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+</div>
+      
+    </div>
+  </div>
+</div>
+                
+          
+                
+<div class="alert alert-dismissible alert-success d-none" id="itsOK">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <strong>Su compra se ha realizado con exito</strong>
+</div>
+                
     </section>
   </main>
   <footer class="text-muted">
