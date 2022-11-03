@@ -36,8 +36,6 @@ document.addEventListener("DOMContentLoaded", function(e){
 
     submitBtn.addEventListener("click", (e) => {
           e.preventDefault()
-          
-      if (!form.classList.contains("validado")) {
           validar(street);
           validar(number);
           validar(corner);
@@ -52,11 +50,16 @@ document.addEventListener("DOMContentLoaded", function(e){
           document.getElementById('itsOK').classList.remove('d-none')
           document.getElementById('itsOK').classList.add('d-block')
           }
-      }
+      
     
     
+          document.getElementById('form1').addEventListener("input", () => {
+            if (form.classList.contains("validado")) {debugger
+                validarCantidad(document.getElementById('form1'));
+            }
     })
 
+  })
     street.addEventListener("input", () => {
       if (form.classList.contains("validado")) {
           validar(street);
@@ -116,7 +119,9 @@ function quantityPlus(){
   
   cloneHtml()
     
-
+  if(form.classList.contains('validado')){
+    validarCantidad(document.getElementById('form1'))
+  }
     
 }
 
@@ -130,7 +135,9 @@ function quantityMinus(){
    document.getElementById('subTotal').innerHTML = `USD${nPrecio}`
   
   cloneHtml()
-    
+    if(form.classList.contains('validado')){
+      validarCantidad(document.getElementById('form1'))
+    }
   }
     
 }
@@ -248,6 +255,7 @@ function validarCantidad(input){
   return true
  }
  else{
+  input.classList.remove('is-valid')
   input.classList.add('is-invalid')
  }
 }
